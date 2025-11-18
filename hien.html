@@ -15,7 +15,7 @@
       display: flex;
       justify-content: center;
       padding: 20px;
-      overflow-y: auto; /* <-- CHO KÉO TRANG */
+      overflow-y: auto; /* Cho kéo xuống */
     }
 
     .card-wrapper {
@@ -26,7 +26,6 @@
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
       padding: 22px 18px 26px;
       position: relative;
-      z-index: 2;
     }
 
     .inner-card {
@@ -34,7 +33,6 @@
       border-radius: 28px;
       padding: 22px 18px 26px;
       position: relative;
-      z-index: 3;
     }
 
     .top-pill {
@@ -47,6 +45,7 @@
       text-align: center;
       margin-bottom: 16px;
       position: relative;
+      z-index: 2;
     }
     .top-pill::before, .top-pill::after {
       content: "🌸";
@@ -58,7 +57,13 @@
     .top-pill::before { left: 12px; }
     .top-pill::after { right: 12px; }
 
-    .avatar-wrap { display: flex; justify-content: center; margin: 8px 0 12px; }
+    .avatar-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 12px;
+      position: relative;
+      z-index: 2;
+    }
 
     .avatar-ring {
       padding: 3px;
@@ -73,9 +78,11 @@
       object-fit: cover;
     }
 
+    /* Hoa tĩnh quanh avatar */
     .avatar-flower {
       position: absolute;
       font-size: 22px;
+      z-index: 5;
     }
     .avatar-flower.f1 { top: 150px; left: 40px; }
     .avatar-flower.f2 { top: 145px; right: 38px; }
@@ -87,6 +94,8 @@
       text-align: center;
       font-weight: 700;
       color: #444;
+      z-index: 2;
+      position: relative;
     }
 
     .subtitle {
@@ -94,6 +103,8 @@
       font-size: 15px;
       text-align: center;
       color: #666;
+      position: relative;
+      z-index: 2;
     }
 
     .message-card {
@@ -105,6 +116,7 @@
       line-height: 1.7;
       white-space: pre-line;
       position: relative;
+      z-index: 2;
     }
     .message-card::before {
       content: "🌸";
@@ -126,6 +138,8 @@
       background: #f5f9ff;
       border-radius: 20px;
       padding: 12px 14px 16px;
+      z-index: 2;
+      position: relative;
     }
 
     .audio-header {
@@ -133,20 +147,20 @@
       align-items: center;
       font-weight: 600;
       margin-bottom: 8px;
+      z-index: 2;
     }
-
     .audio-header .icon { margin-right: 6px; font-size: 18px; }
 
-    audio { width: 100%; }
+    audio { width: 100%; position: relative; z-index: 2; }
 
-    /* HOA RƠI */
+    /* HOA RƠI – LUÔN Ở TRÊN CÙNG */
     .petal {
       position: fixed;
       top: -10vh;
+      z-index: 99999; /* đặt hoa rơi TRÊN TẤT CẢ */
       font-size: 20px;
       animation: fall linear forwards;
       pointer-events: none;
-      z-index: 1;
     }
 
     @keyframes fall {
@@ -195,6 +209,7 @@ Tập thể lớp 7A kính tặng 💐
         <audio controls>
           <source src="nhac.mp3" type="audio/mpeg">
         </audio>
+
       </div>
     </div>
   </div>
@@ -216,3 +231,4 @@ Tập thể lớp 7A kính tặng 💐
 
 </body>
 </html>
+
