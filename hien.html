@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thiệp 20/11 tặng cô Hiền</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  height:100vh; margin:0;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,#fff8e1,#ffe4f3);
+  font-family:'Segoe UI';
+  overflow:hidden;
+}
+.card {
+  width:380px; background:#fff; padding:24px 20px 90px;
+  border-radius:22px; text-align:center;
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+  position:relative; z-index:2;
+}
+.photo {
+  width:160px; height:160px; border-radius:50%;
+  object-fit:cover; border:5px solid #ffca28;
+}
+h1{color:#f57f17;font-size:22px;margin:10px 0 4px}
+h2{color:#555;font-size:17px;margin:0 0 12px}
+.divider {
+  width:70px; height:4px;
+  background:linear-gradient(90deg,#ffca28,#ff7043);
+  border-radius:20px; margin:12px auto;
+}
+.message {
+  font-size:14px; color:#444; line-height:1.6;
+  text-align:justify; white-space:pre-line;
+}
+.footer {
+  position:absolute; bottom:20px; left:0; right:0; color:#777;
+}
+.flower {
+  position:fixed; top:-60px; width:40px; height:40px;
+  background:url('sunflower.png'); background-size:cover;
+  animation:fall linear infinite;
+  pointer-events:none; opacity:.9;
+}
+@keyframes fall {
+  to{ transform:translateY(120vh) rotate(360deg); }
+}
+.audio-btn {
+  position:absolute; bottom:20px; right:20px;
+  width:52px; height:52px; border-radius:50%;
+  background:#ff7043; border:none; color:#fff; font-size:22px;
+  box-shadow:0 5px 12px rgba(0,0,0,.25);
+}
+audio{display:none}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <img src="co-hien.jpg" class="photo">
+  <h1>Chúc mừng Ngày Nhà giáo Việt Nam 20/11</h1>
+  <h2>Tặng cô Hiền kính yêu</h2>
+  <div class="divider"></div>
+
+  <div class="message">
+Nhân ngày Nhà giáo Việt Nam 20/11, tập thể lớp 7A xin gửi đến cô Hiền lời tri ân sâu sắc nhất.
+
+Cảm ơn cô vì sự tận tâm, dịu dàng và luôn yêu thương học trò như những đứa con của mình.
+Mỗi bài giảng, mỗi lời nhắc nhở của cô đã giúp chúng em trưởng thành hơn từng ngày.
+
+Kính chúc cô luôn mạnh khỏe, hạnh phúc và tràn đầy năng lượng để tiếp tục gieo yêu thương lên hành trình tri thức.
+  </div>
+
+  <div class="footer">Tập thể lớp 7A kính tặng 💐</div>
+
+  <button class="audio-btn" id="btn">▶</button>
+  <audio id="bgm" src="nhac.mp3"></audio>
+</div>
+
+<script>
+const btn=document.getElementById("btn");
+const audio=document.getElementById("bgm");
+let play=false;
+btn.onclick=()=>{ play=!play; play?audio.play():audio.pause(); btn.textContent=play?"⏸":"▶"; };
+
+function flower(){
+  const f=document.createElement("div");
+  f.className="flower";
+  f.style.left=Math.random()*100+"vw";
+  f.style.animationDuration=3+Math.random()*4+"s";
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),7000);
+}
+setInterval(flower,300);
+</script>
+
+</body>
+</html>
