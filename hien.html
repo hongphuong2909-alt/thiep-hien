@@ -3,39 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <title>20/11 – Lớp 7A kính tặng cô Hiền</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-family: "Segoe UI", sans-serif;
       background: radial-gradient(circle at top left, #ffe4f4, #ffeef7 35%, #ffd6e8 70%, #ffc4dd);
       display: flex;
-      align-items: center;
       justify-content: center;
       padding: 20px;
-      overflow: hidden;
+      overflow-y: auto; /* <-- CHO KÉO TRANG */
     }
 
     .card-wrapper {
-      max-width: 430px;
       width: 100%;
+      max-width: 430px;
       background: linear-gradient(180deg, #ffe6f3, #ffeef9);
       border-radius: 32px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
       padding: 22px 18px 26px;
       position: relative;
-      overflow: hidden;
+      z-index: 2;
     }
 
     .inner-card {
-      background: #ffffff;
+      background: #fff;
       border-radius: 28px;
       padding: 22px 18px 26px;
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
 
     .top-pill {
@@ -49,9 +48,7 @@
       margin-bottom: 16px;
       position: relative;
     }
-
-    .top-pill::before,
-    .top-pill::after {
+    .top-pill::before, .top-pill::after {
       content: "🌸";
       position: absolute;
       top: 50%;
@@ -67,9 +64,6 @@
       padding: 3px;
       border-radius: 50%;
       background: conic-gradient(from 180deg, #ff80ab, #ffb74d, #81d4fa, #ce93d8, #ff80ab);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .avatar {
@@ -82,7 +76,6 @@
     .avatar-flower {
       position: absolute;
       font-size: 22px;
-      z-index: 3;
     }
     .avatar-flower.f1 { top: 150px; left: 40px; }
     .avatar-flower.f2 { top: 145px; right: 38px; }
@@ -90,18 +83,16 @@
 
     .title {
       margin-top: 6px;
-      text-align: center;
       font-size: 22px;
+      text-align: center;
       font-weight: 700;
       color: #444;
-      line-height: 1.3;
     }
 
     .subtitle {
       margin-top: 4px;
-      text-align: center;
       font-size: 15px;
-      font-weight: 500;
+      text-align: center;
       color: #666;
     }
 
@@ -109,14 +100,12 @@
       margin-top: 18px;
       background: #fff3f7;
       border-radius: 20px;
-      padding: 14px 14px 16px;
+      padding: 14px;
       font-size: 14px;
-      color: #444;
       line-height: 1.7;
-      position: relative;
       white-space: pre-line;
+      position: relative;
     }
-
     .message-card::before {
       content: "🌸";
       position: absolute;
@@ -127,7 +116,7 @@
     .message-card::after {
       content: "🌸";
       position: absolute;
-      bottom: 6px;
+      bottom: 8px;
       right: 10px;
       font-size: 18px;
     }
@@ -137,49 +126,50 @@
       background: #f5f9ff;
       border-radius: 20px;
       padding: 12px 14px 16px;
-      font-size: 14px;
-      color: #444;
     }
 
     .audio-header {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
       font-weight: 600;
+      margin-bottom: 8px;
     }
 
-    .audio-header span.icon { margin-right: 6px; font-size: 18px; }
+    .audio-header .icon { margin-right: 6px; font-size: 18px; }
 
-    audio { width: 100%; margin-top: 4px; }
+    audio { width: 100%; }
 
+    /* HOA RƠI */
     .petal {
       position: fixed;
       top: -10vh;
-      z-index: 1;
+      font-size: 20px;
+      animation: fall linear forwards;
       pointer-events: none;
-      animation: petal-fall linear forwards;
-      opacity: 0.95;
+      z-index: 1;
     }
 
-    @keyframes petal-fall {
-      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+    @keyframes fall {
+      0% { transform: translateY(0) translateX(0) rotate(0); opacity: 1; }
       100% { transform: translateY(120vh) translateX(25px) rotate(360deg); opacity: 0; }
     }
   </style>
 </head>
 
 <body>
+
   <div class="card-wrapper">
     <span class="avatar-flower f1">🌸</span>
     <span class="avatar-flower f2">🌸</span>
     <span class="avatar-flower f3">🌸</span>
 
     <div class="inner-card">
+
       <div class="top-pill">20/11 – Lớp 7A kính tặng cô Hiền</div>
 
       <div class="avatar-wrap">
         <div class="avatar-ring">
-          <img src="co-hien.jpg" alt="Cô Hiền" class="avatar" />
+          <img src="co-hien.jpg" class="avatar">
         </div>
       </div>
 
@@ -198,10 +188,12 @@ Tập thể lớp 7A kính tặng 💐
       </div>
 
       <div class="audio-card">
-        <div class="audio-header"><span class="icon">🎵</span> Bài hát kính tặng cô</div>
+        <div class="audio-header">
+          <span class="icon">🎵</span> Bài hát kính tặng cô
+        </div>
+
         <audio controls>
-          <source src="nhac.mp3" type="audio/mpeg" />
-          Trình duyệt không hỗ trợ nghe nhạc.
+          <source src="nhac.mp3" type="audio/mpeg">
         </audio>
       </div>
     </div>
@@ -209,21 +201,18 @@ Tập thể lớp 7A kính tặng 💐
 
   <script>
     function createPetal() {
-      const petal = document.createElement("span");
-      petal.className = "petal";
-      petal.textContent = "🌸";
-
-      petal.style.left = Math.random() * 100 + "vw";
-      petal.style.fontSize = 18 + Math.random() * 16 + "px";
-      petal.style.animationDuration = 6 + Math.random() * 4 + "s";
-
-      document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 11000);
+      const p = document.createElement("span");
+      p.className = "petal";
+      p.textContent = "🌸";
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.fontSize = (18 + Math.random() * 14) + "px";
+      p.style.animationDuration = (6 + Math.random() * 4) + "s";
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 11000);
     }
 
     setInterval(createPetal, 600);
   </script>
+
 </body>
 </html>
-
-
