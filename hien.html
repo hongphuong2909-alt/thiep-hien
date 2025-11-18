@@ -1,93 +1,313 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Thiệp 20/11 tặng cô Hiền – Hoa mai rơi</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body{
-  margin:0; height:100vh;
-  display:flex; align-items:center; justify-content:center;
-  background:linear-gradient(135deg,#fff8e1,#ffe4f3);
-  font-family:'Segoe UI'; overflow:hidden;
-}
-.card{
-  width:380px; background:#fff; border-radius:22px;
-  padding:24px 20px 90px; text-align:center;
-  box-shadow:0 12px 30px rgba(0,0,0,.18);
-  position:relative; z-index:2;
-}
-.photo{
-  width:160px;height:160px;border-radius:50%;
-  object-fit:cover;border:5px solid #ffca28;
-}
-h1{color:#f57f17;font-size:22px;margin:10px 0 4px}
-h2{color:#555;font-size:17px;margin:0 0 12px}
-.divider{width:70px;height:4px;background:linear-gradient(90deg,#ffca28,#ff7043);
-border-radius:20px;margin:12px auto;}
-.message{
-  font-size:14px;color:#444;line-height:1.6;
-  text-align:justify;white-space:pre-line;
-}
-.footer{
-  position:absolute;bottom:20px;left:0;right:0;color:#777;
-}
-.flower{
-  position:fixed;top:-60px;width:42px;height:42px;
-  background:url('hoa-mai.png');background-size:cover;
-  animation:fall linear infinite;opacity:.95;pointer-events:none;
-}
-@keyframes fall{
-  to{transform:translateY(120vh) rotate(360deg);}
-}
-.audio-btn{
-  position:absolute;bottom:20px;right:20px;
-  width:52px;height:52px;border-radius:50%;
-  background:#ff7043;border:none;color:#fff;font-size:22px;
-  box-shadow:0 5px 12px rgba(0,0,0,.25);
-}
-audio{display:none}
-</style>
+  <meta charset="UTF-8" />
+  <title>20/11 – Lớp 7A kính tặng cô Hiền</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+        sans-serif;
+      background: radial-gradient(circle at top left, #ffe4f4, #ffeef7 35%, #ffd6e8 70%, #ffc4dd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: hidden; /* để hoa rơi không hiện thanh cuộn */
+    }
+
+    .card-wrapper {
+      max-width: 430px;
+      width: 100%;
+      background: linear-gradient(180deg, #ffe6f3, #ffeef9);
+      border-radius: 32px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+      padding: 22px 18px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .inner-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 22px 18px 26px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Thanh tiêu đề hồng */
+    .top-pill {
+      background: #f88bb4;
+      background: linear-gradient(90deg, #f86da9, #f9a0c2);
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      text-align: center;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .top-pill::before,
+    .top-pill::after {
+      content: "🌸";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+    }
+
+    .top-pill::before {
+      left: 12px;
+    }
+    .top-pill::after {
+      right: 12px;
+    }
+
+    /* Ảnh cô Hiền dạng tròn */
+    .avatar-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 12px;
+    }
+
+    .avatar-ring {
+      padding: 3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 180deg,
+        #ff80ab,
+        #ffb74d,
+        #81d4fa,
+        #ce93d8,
+        #ff80ab
+      );
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #ffeef6;
+    }
+
+    /* Hoa tĩnh quanh ảnh */
+    .avatar-flower {
+      position: absolute;
+      font-size: 22px;
+      z-index: 3;
+    }
+    .avatar-flower.f1 { top: 150px; left: 40px; }
+    .avatar-flower.f2 { top: 145px; right: 38px; }
+    .avatar-flower.f3 { top: 230px; left: 50%; transform: translateX(-50%); }
+
+    /* Tiêu đề */
+    .title {
+      margin-top: 6px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #444;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 500;
+      color: #666;
+    }
+
+    /* Khối lời chúc */
+    .message-card {
+      margin-top: 18px;
+      background: #fff3f7;
+      border-radius: 20px;
+      padding: 14px 14px 16px;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .message-card::before {
+      content: "🌸";
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-size: 18px;
+    }
+
+    .message-card::after {
+      content: "🌸";
+      position: absolute;
+      bottom: 6px;
+      right: 10px;
+      font-size: 18px;
+    }
+
+    .message-card p {
+      text-indent: 0;
+    }
+
+    /* Khối audio */
+    .audio-card {
+      margin-top: 18px;
+      background: #f5f9ff;
+      border-radius: 20px;
+      padding: 12px 14px 16px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .audio-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .audio-header span.icon {
+      margin-right: 6px;
+      font-size: 18px;
+    }
+
+    .audio-header span.flower {
+      margin-left: 4px;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .audio-note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    /* Hoa rơi (emoji) */
+    .petal {
+      position: fixed;
+      top: -10vh;
+      z-index: 1;
+      pointer-events: none;
+      animation-name: petal-fall;
+      animation-timing-function: linear;
+      animation-iteration-count: 1;
+      opacity: 0.95;
+    }
+
+    @keyframes petal-fall {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(120vh) translateX(20px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card-wrapper {
+        padding: 16px 10px 20px;
+      }
+      .inner-card {
+        padding: 20px 14px 22px;
+      }
+      .avatar {
+        width: 135px;
+        height: 135px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <!-- Hoa tĩnh quanh avatar -->
+  <div class="card-wrapper">
+    <span class="avatar-flower f1">🌸</span>
+    <span class="avatar-flower f2">🌸</span>
+    <span class="avatar-flower f3">🌸</span>
 
-<div class="card">
-  <img src="co-hien.jpg" class="photo">
-  <h1>Chúc mừng Ngày Nhà giáo Việt Nam 20/11</h1>
-  <h2>Tặng cô Hiền kính yêu</h2>
-  <div class="divider"></div>
+    <div class="inner-card">
+      <div class="top-pill">
+        20/11 – Lớp 7A kính tặng cô Hiền
+      </div>
 
-  <div class="message">
-Nhân ngày Nhà giáo Việt Nam 20/11, tập thể lớp 7A xin gửi đến cô Hiền lời tri ân sâu sắc nhất.
+      <div class="avatar-wrap">
+        <div class="avatar-ring">
+          <img src="co-hien.jpg" alt="Cô Hiền" class="avatar" />
+        </div>
+      </div>
 
-Cảm ơn cô vì sự tận tâm, dịu dàng và luôn yêu thương học trò như những đứa con của mình.
-Mỗi bài giảng, mỗi lời nhắc nhở của cô đã giúp chúng em trưởng thành hơn từng ngày.
+      <h1 class="title">Kính gửi cô Hiền kính mến</h1>
+      <p class="subtitle">Thiệp nhỏ thay lời tri ân của tập thể lớp 7A 💗</p>
 
-Kính chúc cô luôn mạnh khỏe, hạnh phúc và tràn đầy năng lượng để tiếp tục gieo yêu thương lên hành trình tri thức.
+      <div class="message-card">
+        <p>
+Nhân ngày Nhà giáo Việt Nam 20/11, tập thể lớp 7A xin kính chúc cô luôn mạnh
+khỏe, hạnh phúc và tràn đầy cảm hứng để dìu dắt những tâm hồn yêu Văn.
+Tri thức và tình yêu của cô sẽ mãi là ngọn lửa soi sáng đường đời cho chúng em.
+        </p>
+      </div>
+
+      <div class="audio-card">
+        <div class="audio-header">
+          <span class="icon">🎵</span>
+          <span>Bài hát kính tặng cô</span>
+          <span class="flower">🌸</span>
+        </div>
+        <audio controls>
+          <source src="nhac.mp3" type="audio/mpeg" />
+          Trình duyệt của cô không hỗ trợ phát nhạc.
+        </audio>
+        <div class="audio-note">
+          Khi cô bấm <strong>Play</strong>, thiệp vẫn hiển thị đầy đủ phía trên.
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="footer">Tập thể lớp 7A kính tặng 💐</div>
+  <script>
+    // Tạo cánh hoa rơi bằng emoji 🌸, không dùng file ảnh
+    function createPetal() {
+      const petal = document.createElement("span");
+      petal.className = "petal";
+      petal.textContent = "🌸";
 
-  <button class="audio-btn" id="btn">▶</button>
-  <audio id="bgm" src="nhac.mp3"></audio>
-</div>
+      const startLeft = Math.random() * 100; // %
+      const duration = 6 + Math.random() * 4; // 6–10s
+      const size = 18 + Math.random() * 16; // 18–34px
 
-<script>
-const btn=document.getElementById("btn");
-const audio=document.getElementById("bgm");
-let play=false;
-btn.onclick=()=>{ play=!play; play?audio.play():audio.pause(); btn.textContent=play?"⏸":"▶"; };
+      petal.style.left = startLeft + "vw";
+      petal.style.fontSize = size + "px";
+      petal.style.animationDuration = duration + "s";
 
-function flower(){
-  const f=document.createElement("div");
-  f.className="flower";
-  f.style.left=Math.random()*100+'vw';
-  f.style.animationDuration=(3+Math.random()*4)+'s';
-  document.body.appendChild(f);
-  setTimeout(()=>f.remove(),7000);
-}
-setInterval(flower,260);
-</script>
+      document.body.appendChild(petal);
 
+      setTimeout(() => petal.remove(), duration * 1000 + 500);
+    }
+
+    // Tạo hoa liên tục
+    setInterval(createPetal, 550);
+  </script>
 </body>
 </html>
+
